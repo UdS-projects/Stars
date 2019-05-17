@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
     }
     rewind(fp);
     
-    struct star *array = (struct star*) malloc((sizeof(struct star))*fileSize);
+    struct star *array = malloc((sizeof(struct star*))*fileSize);
     int i = 0;
     while(i < fileSize)
     {
