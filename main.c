@@ -72,6 +72,7 @@ int main(int argc, char *argv[])
 		// TODO draw the constellation to the image
 		draw_constellation_from_file(f, &img, array, fileSize);
 		
+        free(array);
 		fclose(f);
 	}
 
