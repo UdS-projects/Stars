@@ -10,6 +10,9 @@ stars: star.o main.o image.o
 test: test.o image.o star.o
 	$(CC) $(LDFLAGS) -o $@ $^
 	
+test2: CustomTest.o image.o star.o
+	$(CC) $(LDFLAGS) -o $@ $^
+	
 %.o: %.c
 	$(CC) -O0 -g -Wall -pedantic -fsanitize=address --std=c99 -o $@ -c $<
 
