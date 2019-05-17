@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
     double x,y,z,magnitude;
     int draper, harvard;
     int fileSize = 0;
-	while(fscanf(fp, "%le %le %le %i %le %i", &x, &y, &z, &draper, &magnitude, &harvard) != 6)
+	while(fscanf(fp, "%lf %lf %lf %i %lf %i", &x, &y, &z, &draper, &magnitude, &harvard) == 6)
     {
         fileSize++;
     }

@@ -9,7 +9,7 @@ int star_read_from_file(struct star* s, FILE* f)
 {
     double x,y,z,magnitude;
     int draper, harvard;
-	if(fscanf(f, "%le %le %le %i %le %i", &x, &y, &z, &draper, &magnitude, &harvard) == 6 && x >= -1 && x <= 1 && y >= -1 && y <= 1)
+	if(fscanf(f, "%lf %lf %lf %i %lf %i", &x, &y, &z, &draper, &magnitude, &harvard) == 6 && x >= -1 && x <= 1 && y >= -1 && y <= 1)
     {
         s->x = x;
         s->y = y;
