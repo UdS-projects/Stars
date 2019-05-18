@@ -44,7 +44,7 @@ void draw_constellation_from_file(FILE* f, struct image* img, struct star const*
     for(int i=0; fscanf(f, "%i,%i", &draperStar1, &draperStar2) != EOF; i++)
     {
         int currentStar1Index = 0;
-        while(draperStar1 != (stars[currentStar1Index].draper) && currentStar1Index < num_stars)
+        while((draperStar1 != (stars[currentStar1Index].draper)) && (currentStar1Index < num_stars))
         {
             currentStar1Index++;
         }
