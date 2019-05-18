@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
     }
     rewind(fp);
     
-    printf("fileSize: %i\n", fileSize);
+    //printf("fileSize: %i\n", fileSize);
     struct star *array = malloc((sizeof(struct star))*fileSize);
     int i = 0;
     while(i < fileSize)
@@ -73,9 +73,10 @@ int main(int argc, char *argv[])
 		// TODO draw the constellation to the image
 		draw_constellation_from_file(f, &img, array, fileSize);
 		
-        free(array);
 		fclose(f);
 	}
+	
+        free(array);
 
 	// write the painted image to the output file.
 	FILE* image_file = fopen("stars.pbm", "w");
