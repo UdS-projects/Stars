@@ -77,17 +77,17 @@ void image_write_to_file(struct image* img, FILE* f)
     fprintf(f, "P3\n");
     fprintf(f, "%i %i\n", img->w, img->h);
     fprintf(f, "255\n");
-    int index = 0;
+    
     for(int i=0; i<(img->h); i++)
     {
         for(int j=0; j<(img->w); j++)
         {
-            int red = (((img->data[index]) >> 16) & 0xFF);
-            int green = (((img->data[index]) >> 8) & 0xFF);
-            int blue = (((img->data[index])) & 0xFF);
+            int red = (((img->data[j]) >> 16) & 0xFF);
+            int green = (((img->data[j]) >> 8) & 0xFF);
+            int blue = (((img->data[j])) & 0xFF);
             if (0 <= red && red <= 255 && 0 <= green && green <= 255 && 0 <= blue && blue <= 255 )
             fprintf(f, "%i %i %i ", red, green, blue);
-            index++;
+            
         }
 
         fprintf(f, "\n");

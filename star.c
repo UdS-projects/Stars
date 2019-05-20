@@ -9,7 +9,7 @@ int star_read_from_file(struct star* s, FILE* f)
 {
     double x,y,z,magnitude;
     int draper, harvard;
-	if(fscanf(f, "%lf %lf %lf %i %lf %i", &x, &y, &z, &draper, &magnitude, &harvard) == 6 && x >= -1 && x <= 1 && y >= -1 && y <= 1)
+	if(fscanf(f, "%lf %lf %lf %i %lf %i", &x, &y, &z, &draper, &magnitude, &harvard) != EOF  )
     {
         s->x = x;
         s->y = y;
@@ -74,20 +74,20 @@ void draw_constellation_from_file(FILE* f, struct image* img, struct star const*
         if (pruf1 == 1 && pruf2 == 1)
         {
         
-        if (currentStar2Index < currentStar1Index)
-        {
-            int  x1,y1,x2,y2;
-            star_coord_to_pixel(&stars[currentStar1Index], img, &x1,&y1);
-            star_coord_to_pixel(&stars[currentStar2Index], img, &x2,&y2);
-            image_draw_line(img, 0xffff00, x1, y1, x2, y2);
-            }
-            if (currentStar1Index < currentStar2Index)
+            if (currentStar2Index < currentStar1Index)
             {
-            int  x1,y1,x2,y2;
-            star_coord_to_pixel(&stars[currentStar1Index], img, &x1,&y1);
-            star_coord_to_pixel(&stars[currentStar2Index], img, &x2,&y2);
-            image_draw_line(img, 0xffff00, x2, y2, x1, y1);
-            }
+                int  x1,y1,x2,y2;
+                star_coord_to_pixel(&stars[currentStar1Index], img, &x1,&y1);
+                star_coord_to_pixel(&stars[currentStar2Index], img, &x2,&y2);
+                image_draw_line(img, 0xffff00, x1, y1, x2, y2);
+                }
+                if (currentStar1Index < currentStar2Index)
+                {
+                int  x1,y1,x2,y2;
+                star_coord_to_pixel(&stars[currentStar1Index], img, &x1,&y1);
+                star_coord_to_pixel(&stars[currentStar2Index], img, &x2,&y2);
+                image_draw_line(img, 0xffff00, x2, y2, x1, y1);
+                }
         }
     }
 }
