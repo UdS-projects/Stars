@@ -44,6 +44,7 @@ void draw_constellation_from_file(FILE* f, struct image* img, struct star const*
     while(fscanf(f, "%i,%i", &draperStar1, &draperStar2) != EOF)
     {
         int currentStar1Index = 0;
+       // printf("%i %i\n", num_stars, stars[1].draper);
         while((draperStar1 != (stars[currentStar1Index].draper)) && (currentStar1Index < num_stars))
         {
             currentStar1Index++;
@@ -63,6 +64,19 @@ void draw_constellation_from_file(FILE* f, struct image* img, struct star const*
             continue;
         }
         
-        image_draw_line(img, 0xffff00, stars[currentStar1Index].x, stars[currentStar1Index].y, stars[currentStar2Index].x, stars[currentStar2Index].y);
+        if (currentStar2Index < currentStar1Index)
+        {
+        int  x1,y1,x2,y2;
+        star_coord_to_pixel(&stars[currentStar1Index], img, &x1,&y1);
+        star_coord_to_pixel(&stars[currentStar2Index], img, &x2,&y2);
+        image_draw_line(img, 0xffff00, x1, y1, x2, y2);
+        }
+        if (currentStar1Index < currentStar2Index)
+        {
+        int  x1,y1,x2,y2;
+        star_coord_to_pixel(&stars[currentStar1Index], img, &x1,&y1);
+        star_coord_to_pixel(&stars[currentStar2Index], img, &x2,&y2);
+        image_draw_line(img, 0xffff00, x2, y2, x1, y1);
+        }
     }
 }

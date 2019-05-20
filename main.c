@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
     double x,y,z,magnitude;
     int draper, harvard;
     int fileSize = 0;
-	while(fscanf(fp, "%lf %lf %lf %i %lf %i", &x, &y, &z, &draper, &magnitude, &harvard) == 6)
+	while(fscanf(fp, "%lf %lf %lf %i %lf %i", &x, &y, &z, &draper, &magnitude, &harvard) == 1)
     {
         fileSize++;
     }
@@ -60,16 +60,18 @@ int main(int argc, char *argv[])
     }
     
 	// open every constellation file
+	//printf("argc: %i\n", argc);
 	for (int i = 3; i < argc; i++)
     {
 		FILE* f = fopen(argv[i], "r");
 		// if the file could not be opened, skip to the next one.
 		if(f == NULL)
         {
+            printf("Ui\n");
 			fprintf(stderr, "cannot open line file \"%s\"\n", argv[i]);
 			continue;
 		}
-		
+	//	printf("Hallo\n");
 		// TODO draw the constellation to the image
 		draw_constellation_from_file(f, &img, array, fileSize);
 		
