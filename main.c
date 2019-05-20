@@ -26,16 +26,12 @@ int main(int argc, char *argv[])
 	// TODO: Read in the stars from the file with name argv[2] 
 	// save them in an array in the order they are read in and draw them to the image.
     FILE* fp = fopen(argv[2], "r");
-    char c ; 
     
-    //double x,y,z,magnitude;
-    //int draper, harvard;
+    double x,y,z,magnitude;
+    int draper, harvard;
     int fileSize = 0;
-// 	while(fscanf(fp, "%lf %lf %lf %i %lf %i", &x, &y, &z, &draper, &magnitude, &harvard) == 6)
-    while (c != EOF )
+ 	while(fscanf(fp, "%lf %lf %lf %i %lf %i", &x, &y, &z, &draper, &magnitude, &harvard) == 6)
     {
-        c = fgetc(fp);
-        if (c == '\n');
         fileSize++;
     }
     rewind(fp);

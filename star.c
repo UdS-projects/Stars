@@ -43,7 +43,7 @@ void draw_constellation_from_file(FILE* f, struct image* img, struct star const*
     int pruf1 = 0; 
     int pruf2 = 0;
    // int num_stars2 = num_stars - 1;
-    while(fscanf(f, "%i,%i", &draperStar1, &draperStar2) != EOF)
+    while(fscanf(f, "%i,%i", &draperStar1, &draperStar2) == 2)
     {
         int currentStar1Index = 0;
        // printf("%i %i\n", num_stars, stars[1].draper);
