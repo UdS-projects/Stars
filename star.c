@@ -40,43 +40,54 @@ void draw_constellation_from_file(FILE* f, struct image* img, struct star const*
 {
     int draperStar1;
     int draperStar2;
+    int pruf1 = 0; 
+    int pruf2 = 0;
    // int num_stars2 = num_stars - 1;
     while(fscanf(f, "%i,%i", &draperStar1, &draperStar2) != EOF)
     {
         int currentStar1Index = 0;
        // printf("%i %i\n", num_stars, stars[1].draper);
-        while((draperStar1 != (stars[currentStar1Index].draper)) && (currentStar1Index < num_stars))
+        for(int i = 0; i < num_stars ; i++)
         {
+            if ( draperStar1 != stars[currentStar1Index].draper)
+            {
             currentStar1Index++;
-        }
-        if(currentStar1Index == num_stars && draperStar1 != (stars[currentStar1Index].draper))
-        {
-            continue;
+            }
+            else 
+            {
+                pruf1 = 1;
+            }
         }
         
         int currentStar2Index = 0;
-        while(draperStar2 != (stars[currentStar2Index].draper) && currentStar2Index < num_stars)
+        for(int i = 0; i < num_stars ; i++)
         {
+            if ( draperStar2 != stars[currentStar2Index].draper)
+            {
             currentStar2Index++;
+            }
+            else 
+            {
+                pruf2 = 1;
+            }
         }
-        if(currentStar2Index == num_stars && draperStar2 != (stars[currentStar2Index].draper))
+        if (pruf1 == 1 && pruf2 == 1)
         {
-            continue;
-        }
         
         if (currentStar2Index < currentStar1Index)
         {
-        int  x1,y1,x2,y2;
-        star_coord_to_pixel(&stars[currentStar1Index], img, &x1,&y1);
-        star_coord_to_pixel(&stars[currentStar2Index], img, &x2,&y2);
-        image_draw_line(img, 0xffff00, x1, y1, x2, y2);
-        }
-        if (currentStar1Index < currentStar2Index)
-        {
-        int  x1,y1,x2,y2;
-        star_coord_to_pixel(&stars[currentStar1Index], img, &x1,&y1);
-        star_coord_to_pixel(&stars[currentStar2Index], img, &x2,&y2);
-        image_draw_line(img, 0xffff00, x2, y2, x1, y1);
+            int  x1,y1,x2,y2;
+            star_coord_to_pixel(&stars[currentStar1Index], img, &x1,&y1);
+            star_coord_to_pixel(&stars[currentStar2Index], img, &x2,&y2);
+            image_draw_line(img, 0xffff00, x1, y1, x2, y2);
+            }
+            if (currentStar1Index < currentStar2Index)
+            {
+            int  x1,y1,x2,y2;
+            star_coord_to_pixel(&stars[currentStar1Index], img, &x1,&y1);
+            star_coord_to_pixel(&stars[currentStar2Index], img, &x2,&y2);
+            image_draw_line(img, 0xffff00, x2, y2, x1, y1);
+            }
         }
     }
 }
