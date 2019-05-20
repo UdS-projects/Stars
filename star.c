@@ -88,7 +88,7 @@ void draw_constellation_from_file(FILE* f, struct image* img, struct star const*
                 star_coord_to_pixel(&stars[currentStar1Index], img, &x1,&y1);
                 star_coord_to_pixel(&stars[currentStar2Index], img, &x2,&y2);
                 image_draw_line(img, 0xffff00, x1, y1, x2, y2);
-                }
+            }
             else
             {
                 int  x1,y1,x2,y2;
